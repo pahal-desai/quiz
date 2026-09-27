@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Quiz Result</title>
+</head>
+
+<body background="https://wallpapercave.com/wp/wp7243608.jpg" text="white"
+    style="background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+    <a href="index.html">Home</a>
+    <h1 align="center">Quiz Result</h1>
+    <hr>
+
+    <div align="center">
+        <h2>Your Final Score:</h2>
+        <h1 style="font-size: 60px; margin: 10px 0;"><span id="score" style="color: lightgreen;">0</span> / 5</h1>
+        <p id="message" style="font-size: 24px;"></p>
+        <img id="gif" src="" height="220px" style="display: none; border-radius: 10px; margin-top: 15px;"><br><br>
+        <a href="index.html" style="color: yellow; font-size: 22px;">Try Another Quiz</a>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const score = parseInt(params.get('score') ?? localStorage.getItem('score') ?? localStorage.getItem('quizScore') ?? 0);
+        document.getElementById('score').innerText = score;
+
+        const messageEl = document.getElementById('message');
+        const gifEl = document.getElementById('gif');
+
+        if (score === 5) {
+            messageEl.innerText = "either you cheated or you've got a brain.";
+            messageEl.style.color = "lightgreen";
+            gifEl.src = "https://media1.tenor.com/m/PpRPqIaayhsAAAAd/albert-einstein-nikola-tesla.gif";
+            gifEl.style.display = "inline-block";
+        } else if (score >= 3) {
+            messageEl.innerText = "not bad.";
+            messageEl.style.color = "yellow";
+            gifEl.src = "https://media1.tenor.com/m/H6sjheSkU1wAAAAC/noice-nice.gif";
+            gifEl.style.display = "inline-block";
+        } else {
+            messageEl.innerText = "ur absolutely cooked";
+            messageEl.style.color = "orange";
+            gifEl.src = "https://media1.tenor.com/m/vymg4htMUa8AAAAC/thanos-memoji.gif";
+            gifEl.style.display = "inline-block";
+        }
+    </script>
+</body>
+
+</html>

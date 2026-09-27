@@ -6,12 +6,12 @@
 <script src="../../mathdisplayer.js"></script>
 
 <body background="../../scary.jpeg" text="white"
-    style="background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+    style="background-size: cover; background-repeat: no-repeat; background-attachment: fixed; position: relative;">
     <a href="physics.html">back</a>
     <h1 align="center">Physics - Extreme</h1>
     <h2>This one shows no mercy. Good luck solving JEE level problems.</h2>
     <hr>
-    <form>
+    <form onsubmit="checkanswers(event)" style="max-width: 70%;">
         <p>1. A ring of mass \(m\) and radius \(R\) rolls without slipping on a horizontal surface with velocity
             \(v_0\). It encounters a frictionless inclined plane of angle \(\theta\). To what maximum vertical height
             \(h\) does the ring rise on the incline?</p>
@@ -35,7 +35,7 @@
         <input type="radio" name="q3" value="3"> \(\frac{\epsilon_0 A}{d} (K_1 + K_2)\)<br>
         <input type="radio" name="q3" value="4"> \(\frac{\epsilon_0 A}{2d} \frac{K_1 K_2}{K_1 + K_2}\)<br>
         <img src="https://media1.tenor.com/m/PigTlE_sfNgAAAAd/excited-hockey.gif" height="200px"
-            style="margin-left: 74%; padding-top: 100px; position: absolute;">
+            style="position: absolute; left: 74%; top: 30%; max-width: 22%; height: auto; max-height: 200px;">
 
         <p>4. A particle of mass \(m\) moves under a central force field given by \(F(r) = -\frac{k}{r^3}\). For
             circular orbit of radius \(R\), what is its total mechanical energy?</p>
@@ -54,6 +54,21 @@
         <br>
         <input type="submit" value="Submit">
     </form>
+    <script>
+        function checkanswers(e) {
+            e.preventDefault();
+            const answers = { q1: "1", q2: "1", q3: "1", q4: "1", q5: "1" };
+            let score = 0;
+            for (let q in answers) {
+                const selected = document.querySelector(`input[name="${q}"]:checked`);
+                if (selected && selected.value === answers[q]) {
+                    score++;
+                }
+            }
+            localStorage.setItem('score', score);
+            window.location.href = "../../result.html?score=" + score;
+        }
+    </script>
 </body>
 
 </html>
